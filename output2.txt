@@ -1,0 +1,39 @@
+Name: Joachim Isaac
+Program 4 Discrete Structures and Analysis.
+Acquaintance Graph Program.
+Number of sets to be read:  2 
+
+Acquaintance Graph  1 : 5 Friends - Jerry Terry John Guy Passos  
+
+1 0 1 1 1 
+0 1 0 1 1 
+1 0 1 0 1 
+0 1 0 1 1 
+0 1 0 1 0 
+
+Introductions to be made:
+ Jerry and Terry
+ Terry and John
+ John and Guy
+ Guy and Jerry
+ Passos and Jerry
+ Passos and John
+
+
+Acquaintance Graph  2 : 6 Friends - Joe David Micah-lyn Aquila Jason Lisa  
+
+1 1 1 1 1 1 
+1 0 1 1 1 1 
+1 1 1 1 1 1 
+1 1 1 0 1 1 
+1 0 1 0 1 0 
+1 0 1 0 1 1 
+
+Introductions to be made:
+ Jason and David
+ Jason and Aquila
+ Jason and Lisa
+ Lisa and David
+ Lisa and Aquila
+
+

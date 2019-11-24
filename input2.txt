@@ -1,0 +1,16 @@
+2
+5
+Jerry Terry John Guy Passos
+1 1 1 0 1
+0 1 0 1 1
+1 0 1 0 1
+0 1 0 1 1
+0 1 0 1 0
+6
+Joe David Micah-lyn Aquila Jason Lisa
+1 1 1 1 1 1
+1 0 1 1 1 1
+1 1 1 1 1 1
+1 1 1 0 1 1
+1 0 1 0 1 0
+1 0 1 0 1 1

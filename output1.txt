@@ -1,0 +1,34 @@
+Name: Joachim Isaac
+Program 4 Discrete Structures and Analysis.
+Acquaintance Graph Program.
+Number of sets to be read:  2 
+
+Acquaintance Graph  1 : 4 Friends - Richard Tina Michelle Ranette  
+
+1 0 1 1 
+0 1 0 1 
+1 0 1 0 
+0 1 0 1 
+
+Introductions to be made:
+ Richard and Tina
+ Tina and Michelle
+ Michelle and Ranette
+ Ranette and Richard
+
+
+Acquaintance Graph  2 : 5 Friends - Diane Shay Debbie Mary Gus  
+
+1 1 1 0 1 
+1 1 0 1 0 
+1 0 1 0 1 
+0 1 0 1 1 
+1 0 1 1 1 
+
+Introductions to be made:
+ Diane and Mary
+ Shay and Debbie
+ Shay and Gus
+ Debbie and Mary
+
+
