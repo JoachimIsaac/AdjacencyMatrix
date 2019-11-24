@@ -1,6 +1,13 @@
 """
+Name: Joachim Isaac.
+Course: CS 2433-101, Fall 19, Dr. Stringfellow.
+Purpose:
 
+Important points:(Things I learned):
 
+-->
+
+-->
 
 """
 
@@ -22,7 +29,7 @@ class Graph(object):
     # removes an edge
     def removeEdge(self, start, end):
         if self.__adjacencyMatrix[start][end] == 0:
-            print("There is no edge between %d and %d" % (start, end))
+            outfile.write("There is no edge between %d and %d" % (start, end))
         else:
             self.__adjacencyMatrix[start][end] = 0
 
@@ -62,7 +69,7 @@ class Graph(object):
 
 def read_input_files():
     input_list = []
-    file_name = input("Please enter the input file name.\n")
+    file_name = input("Please enter the input file name.\n").strip(" ")
 
     # Handles both the opening and closing of the file
     # when reading in values.
@@ -107,7 +114,7 @@ def print_matrix(matrix):
 
             if j == len(matrix[i]) - 1:
                 str_matrix += "\n"
-    print(str_matrix)
+    outfile.write(str_matrix)
 
 
 def determine_introductions(graph):
@@ -144,14 +151,11 @@ def was_visited(postions):
     return results
 
 
-# def was_visited(postions,current_r,current_c):
-#     for rows in range(len(postions)):
-#         if int(postions[rows][0]) == current_r and int(postions[rows][1]) == current_c:
-#             return True
-#         if int(postions[rows][0]) == current_c and int(postions[rows][1]) == current_r:
-#             return True
-#         else:
-#             return False
+# Reads in input file name and returns a file object.
+def open_output_file():
+    outfile = input("Please enter output file name: \n").strip(" ")
+    file = open(outfile, 'w')
+    return file
 
 
 
@@ -160,41 +164,40 @@ def was_visited(postions):
 
 
 
-def print_results(data_read):
+def print_results(data_read,outfile):
     set_number = 1
-    print("Name: Joachim Isaac")
+    outfile.write("Name: Joachim Isaac\n")
+    #print the program name too
+    outfile.write("Program 4 Discrete Structures and Analysis.\n")
+    outfile.write("Acquaintance Graph Program.\n")
+    outfile.write("Number of sets to be read: %2s \n\n"%(data_read[0][0]))
     if len(data_read) == 0:
-        return print("The number of sets is Zero, nothing to read.")
+        return outfile.write("The number of sets is Zero, nothing to read.\n")
 
+        # If input_values has values, iterate over input_values and
+        # read in a limit of (N(sets) * 5) + 1 to print the
+        # number of sets.
+    # for position in range(1, (input_values[0][0] * 5) + 1):
 
-    for position in range(3,len(data_read)):
+    for position in range(3,(int(data_read[0][0]) * 3) + 1):
         if position <= 3:
             current_graph = Graph(data_read[position], data_read[position - 1])
 
-            print("Acquaintance Graph %2d :%2d Friends - %2s \n" % (set_number, current_graph.get_numNodes(),current_graph.vertices_to_String()))
-            print(current_graph.ToString())
-            print("Introductions to be made: ")
-            print(determine_introductions(current_graph)+"\n\n")
+            outfile.write("Acquaintance Graph %2d :%2d Friends - %2s \n\n" % (set_number, current_graph.get_numNodes(),current_graph.vertices_to_String()))
+            outfile.write(current_graph.ToString()+"\n")
+            outfile.write("Introductions to be made:\n")
+            outfile.write(determine_introductions(current_graph)+"\n\n")
+            set_number += 1
         if position > 3:
             if len(data_read[position]) == 1:
                 current_graph = Graph(data_read[position + 2], data_read[position + 1])
-                print("Acquaintance Graph %2d :%2d Friends - %2s \n" % (set_number, current_graph.get_numNodes(), current_graph.vertices_to_String()))
-                print(current_graph.ToString())
-                print("Introductions to be made: ")
-                print(determine_introductions(current_graph))
+                outfile.write("Acquaintance Graph %2d :%2d Friends - %2s \n\n" % (set_number, current_graph.get_numNodes(), current_graph.vertices_to_String()))
+                outfile.write(current_graph.ToString()+"\n")
+                outfile.write("Introductions to be made:\n")
+                outfile.write(determine_introductions(current_graph)+"\n\n")
+                set_number += 1
+    outfile.close()
 
-
-
-
-        #introductions:
-
-
-
-
-        set_number += 1
-
-
-        #then loop...
 
 
 
@@ -202,6 +205,7 @@ def print_results(data_read):
 
 
 data_read = read_input_files()
-print_results(data_read)
+outfile = open_output_file()
+print_results(data_read,outfile)
 
 
