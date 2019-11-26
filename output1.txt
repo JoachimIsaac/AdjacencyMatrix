@@ -17,7 +17,7 @@ Introductions to be made:
  Ranette and Richard
 
 
-Acquaintance Graph  2 : 5 Friends - Diane Shay Debbie Mary Gus  
+Acquaintance Graph  1 : 5 Friends - Diane Shay Debbie Mary Gus  
 
 1 1 1 0 1 
 1 1 0 1 0 

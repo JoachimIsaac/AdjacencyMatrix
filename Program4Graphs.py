@@ -1,12 +1,9 @@
 """
 Name: Joachim Isaac.
-Course: CS 2433-101, Fall 19, Dr. Stringfellow.
+Course: Discrete Structures, Fall 19, Dr. Stringfellow.
 Purpose: To learned how to solve a problem using a graph:
 Using a graph(Acquaintance graph) to find out which
 individuals should be introduced to each other.
-
-Important points:(Things I learned):
-
 
 """
 
@@ -27,21 +24,26 @@ class Graph(object):
     def get_adjacencyMatrix(self):
         return self.__adjacencyMatrix
 
+
     # Returns an array of the vertices(Names).
     def get_vertices_values(self):
         return self.__vertices
+
 
     # Returns the Number of Nodes in the graph.
     def get_numNodes(self):
         return self.__numNodes
 
+
     # Sets a new adjacency Matrix (2D array).
     def set_adjacencyMatrix(self, matrix):
         self.__adjacencyMatrix = matrix
 
+
     # Sets an array of new vertices.
     def set_vertices_values(self,names):
         self.__vertices = names
+
 
     # Sets a new number of nodes.
     def set_numNodes(self,number_of_nodes):
@@ -74,7 +76,6 @@ class Graph(object):
             return False
 
 
-
     # Returns a String of the current vertices
     def vertices_to_String(self):
         str_vetices = ""
@@ -82,6 +83,8 @@ class Graph(object):
             str_vetices += self.__vertices[index] + " "
 
         return str_vetices
+
+
 
 
 
@@ -163,6 +166,7 @@ def transform_input(input_list):
 
 
 
+
 # This function determines who has to be introduced and
 # stores the names separated by an 'and' in a string and
 # returns that string.
@@ -189,6 +193,7 @@ def determine_introductions(graph):
         results += " " + list_of_vertices[checked[rows][0]] + " and " + list_of_vertices[checked[rows][1]] + "\n"
 
     return results
+
 
 
 
@@ -221,6 +226,7 @@ def was_visited(positions):
 
 
 
+
 # Reads in input file name and returns a file object.
 def open_output_file():
     outfile = input("Please enter output file name: \n").strip(" ")
@@ -229,67 +235,102 @@ def open_output_file():
 
 
 
+
 # This prints all the results in a nicely formatted manner.
 def print_results(data_read,outfile):
 
-    set_number = 1
+    # Prints heading with name, class, etc.
+    print_heading(data_read,outfile)
 
-    outfile.write("Name: Joachim Isaac\n")
-    outfile.write("Program 4 Discrete Structures and Analysis.\n")
-    outfile.write("Acquaintance Graph Program.\n")
-    outfile.write("Number of sets to be read: %2s \n\n"%(data_read[0][0]))
-
+    # If the set number was zero it prints out this message.
     if len(data_read) == 0:
         return outfile.write("The number of sets is Zero, nothing to read.\n")
+
+    set_number = 1
 
     # Starts from position 3 of the data_read list
     for position in range(3,(int(data_read[0][0]) * 3) + 1):
 
         if position <= 3:
-            # Creates a graph, and loads it with 2D Matrix and the Vertices.
-            current_graph = Graph(data_read[position], data_read[position - 1])
 
-            # Prints the set number , the number of vertices
-            # and the vertices values(names)
-            outfile.write("Acquaintance Graph %2d :%2d Friends - %2s \n\n" %(set_number, current_graph.get_numNodes(),current_graph.vertices_to_String()))
-
-            # Prints the Adjacency Matrix.
-            outfile.write(current_graph.ToString()+"\n")
-
-
-            outfile.write("Introductions to be made:\n")
-
-            # Prints the introductions that have to be made.
-            outfile.write(determine_introductions(current_graph)+"\n\n")
-
-            set_number += 1
+            # Prints the results in a specific format.
+            print_output_format1(data_read, outfile, set_number,position)
 
 
         if position > 3:
 
-            # If the sub-array's length is equal to 1
-            # then we can enter the if statement.
-            if len(data_read[position]) == 1:
-
-                # Creates a graph, and loads it with 2D Matrix and the Vertices.
-                current_graph = Graph(data_read[position + 2], data_read[position + 1])
-
-                # Prints the set number , the number of vertices
-                # and the vertices values(names)
-                outfile.write("Acquaintance Graph %2d :%2d Friends - %2s \n\n" %(set_number, current_graph.get_numNodes(),current_graph.vertices_to_String()))
-
-                # Prints the Adjacency Matrix.
-                outfile.write(current_graph.ToString()+"\n")
+            # Prints the results in a specific format.
+            print_output_format2(data_read, outfile, set_number, position)
 
 
-                outfile.write("Introductions to be made:\n")
 
-                # Prints the introductions that have to be made.
-                outfile.write(determine_introductions(current_graph)+"\n\n")
 
-                set_number += 1
 
-    outfile.close()
+# Prints the header information of the output.
+def print_heading(data_read, outfile):
+
+    outfile.write("Name: Joachim Isaac\n")
+
+    outfile.write("Program 4 Discrete Structures and Analysis.\n")
+
+    outfile.write("Acquaintance Graph Program.\n")
+
+    # Prints the number of sets to be read
+    outfile.write("Number of sets to be read: %2s \n\n"
+        %('0' if len(data_read) == 0 else data_read[0][0]))
+
+
+
+
+# Prints the results in a specific format.
+# This is used primarily for the first set that is read in.
+def print_output_format1(data_read, outfile, set_number, position):
+    # Creates a graph, and loads it with 2D Matrix and the Vertices.
+    current_graph = Graph(data_read[position], data_read[position - 1])
+
+    # Prints the set number , the number of vertices
+    # and the vertices values(names)
+    outfile.write("Acquaintance Graph %2d :%2d Friends - %2s \n\n" % (
+    set_number, current_graph.get_numNodes(), current_graph.vertices_to_String()))
+
+    # Prints the Adjacency Matrix.
+    outfile.write(current_graph.ToString() + "\n")
+
+    outfile.write("Introductions to be made:\n")
+
+    # Prints the introductions that have to be made.
+    outfile.write(determine_introductions(current_graph) + "\n\n")
+
+    set_number += 1
+
+
+
+
+# Prints the results in a specific format.
+# This is used for sets passed the first set.
+def print_output_format2(data_read, outfile, set_number, position):
+    # If the sub-array's length is equal to 1
+    # then we can enter the if statement.
+    if len(data_read[position]) == 1:
+        # Creates a graph, and loads it with 2D Matrix and the Vertices.
+        current_graph = Graph(data_read[position + 2], data_read[position + 1])
+
+        # Prints the set number , the number of vertices
+        # and the vertices values(names)
+        outfile.write("Acquaintance Graph %2d :%2d Friends - %2s \n\n" % (
+        set_number, current_graph.get_numNodes(), current_graph.vertices_to_String()))
+
+        # Prints the Adjacency Matrix.
+        outfile.write(current_graph.ToString() + "\n")
+
+        outfile.write("Introductions to be made:\n")
+
+        # Prints the introductions that have to be made.
+        outfile.write(determine_introductions(current_graph) + "\n\n")
+
+        set_number += 1
+
+
 
 
 
@@ -300,5 +341,5 @@ def print_results(data_read,outfile):
 data_read = read_input_files()
 outfile = open_output_file()
 print_results(data_read,outfile)
-
+outfile.close()
 
